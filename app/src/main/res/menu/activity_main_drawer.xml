@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_buy"
+            android:icon="@drawable/buy"
+            android:title="@string/menu_buy" />
+        <item
+            android:id="@+id/nav_sell"
+            android:icon="@drawable/sell"
+            android:title="@string/menu_sell" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/help"
+            android:title="@string/menu_help" />
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/contact"
+            android:title="@string/menu_contact" />
+        <item
+            android:id="@+id/nav_more"
+            android:icon="@drawable/more"
+            android:title="@string/menu_more" />
+    </group>
+
+    <item android:title="Personal">
+        <menu>
+            <item
+                android:id="@+id/nav_yourorders"
+                android:icon="@drawable/yourorder"
+                android:title= "@string/menu_YourOrders" />
+            <item
+                android:id="@+id/nav_payment"
+                android:icon="@drawable/paymentmethod"
+                android:title="@string/menu_payment"/>
+            <item
+                android:id="@+id/nav_mywishlist"
+                android:icon="@drawable/mywishlist"
+                android:title="My Bookshelf"/>
+        </menu>
+    </item>
+    <item android:title="NJ Devlop.">
+        <menu>
+            <item
+                android:id="@+id/personal"
+                android:title=""
+                />
+        </menu>
+    </item>
+
+</menu>

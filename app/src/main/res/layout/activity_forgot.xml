@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/linl1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/book7"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/linl3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:alpha="0.4"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/linl2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dark"
+        android:alpha="0.6"/>
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/logo"
+        android:adjustViewBounds="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitCenter"
+        />
+
+    <EditText
+        android:id="@+id/editTextCode1"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="400dp"
+        android:ems="10"
+        android:hint="Enter Email"
+        android:inputType="textMultiLine"
+        android:textColorHint="@color/white"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="57dp" />
+
+
+
+    <Button
+        android:visibility="visible"
+        android:id="@+id/btnSigninn1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="420dp"
+        android:text="Reset Password"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_bg"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-light"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp" />
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btnSigninn2"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="500dp"
+        android:text="Verify OTP"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_bg"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-light"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp" />
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/editTextCode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-214dp"
+        android:visibility="gone"/>
+
+</RelativeLayout>

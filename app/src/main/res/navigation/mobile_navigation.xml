@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.codemail.ui.home.HomeFragment"
+        android:label="@string/menu_bookshop"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_buy"
+        android:name="com.example.codemail.ui.buy.BuyFragment"
+        android:label="@string/menu_bookshop"
+        tools:layout="@layout/fragment_buy" />
+
+    <fragment
+        android:id="@+id/nav_sell"
+        android:name="com.example.codemail.ui.sell.SellFragment"
+        android:label="@string/menu_bookshop"
+        tools:layout="@layout/fragment_sell" />
+
+    <fragment
+        android:id="@+id/nav_help"
+        android:name="com.example.codemail.ui.help.HelpFragment"
+        android:label="@string/menu_bookshop"
+        tools:layout="@layout/fragment_help" />
+
+    <fragment
+        android:id="@+id/nav_contact"
+        android:name="com.example.codemail.ui.contact.ContactFragment"
+        android:label="@string/menu_bookshop"
+        tools:layout="@layout/fragment_contact" />
+
+    <fragment
+        android:id="@+id/nav_more"
+        android:name="com.example.codemail.ui.more.MoreFragment"
+        android:label="@string/menu_bookshop"
+        tools:layout="@layout/fragment_more" />
+
+    <fragment
+        android:id="@+id/nav_yourorders"
+        android:name="com.example.codemail.ui.yourorders.YourordersFragment"
+        android:label="@string/menu_bookshop"
+        tools:layout="@layout/fragment_yourorders" />
+
+    <fragment
+        android:id="@+id/nav_payment"
+        android:name="com.example.codemail.ui.paymentmethods.PaymentmethodsFragment"
+        android:label="@string/menu_bookshop"
+        tools:layout="@layout/fragment_paymentmethods" />
+
+    <fragment
+        android:id="@+id/nav_mywishlist"
+        android:name="com.example.codemail.ui.mywishlist.MywishlistFragment"
+        android:label="@string/menu_bookshop"
+        tools:layout="@layout/fragment_mywishlist" />
+</navigation>

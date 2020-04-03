@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "66970909814",
+    "firebase_url": "https://codemail-88765.firebaseio.com",
+    "project_id": "codemail-88765",
+    "storage_bucket": "codemail-88765.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66970909814:android:bcf9e5d5246bb2ef38f357",
+        "android_client_info": {
+          "package_name": "com.example.codemail"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66970909814-68ncv7uo88c6rbp62n5sureatmm3vjg8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.codemail",
+            "certificate_hash": "1fac66d82c533409657fe472809a5cf5e98c48c9"
+          }
+        },
+        {
+          "client_id": "66970909814-f8k12sjoeabl6p6u5ai9p7b4tiilikdj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOEm73P1Feucz9aHJlLWk5vYYjwfQjygM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66970909814-f8k12sjoeabl6p6u5ai9p7b4tiilikdj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
