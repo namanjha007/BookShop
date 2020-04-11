@@ -17,19 +17,17 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.codemail.R;
 
 public class HomeFragment extends Fragment {
-    ViewFlipper vFlipper;
+    ViewFlipper vFlipper , vFlipper2;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        int images[] = {R.drawable.book, R.drawable.book1, R.drawable.book2, R.drawable.book3};
+        int images[] = {R.drawable.book3, R.drawable.book2, R.drawable.book1, R.drawable.book};
         vFlipper = (ViewFlipper)root.findViewById(R.id.vFlipper);
-
+        vFlipper2 = (ViewFlipper)root.findViewById(R.id.vFlipper2);
         for(int i=0;i<images.length;i++)
         {
             flipperImages(images[i]);
         }
-
-
 
         return root;
     }
@@ -39,10 +37,15 @@ public class HomeFragment extends Fragment {
         imageView.setBackgroundResource(image);
 
         vFlipper.addView(imageView);
-        vFlipper.setFlipInterval(2500);
+        vFlipper.setFlipInterval(4000);
+        vFlipper2.setFlipInterval(3999);
         vFlipper.setAutoStart(true);
+        vFlipper2.setAutoStart(true);
 
         vFlipper.setInAnimation(getContext(), android.R.anim.slide_in_left);
         vFlipper.setOutAnimation(getContext(), android.R.anim.slide_out_right);
+
+        vFlipper2.setInAnimation(getContext(), android.R.anim.slide_in_left);
+        vFlipper2.setOutAnimation(getContext(), android.R.anim.slide_out_right);
     }
 }
