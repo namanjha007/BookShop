@@ -7,9 +7,8 @@
     <RelativeLayout
         android:id="@+id/rll1"
         android:layout_width="wrap_content"
-        android:layout_height="220dp"
-        android:background="@color/colorAccent"
-        android:layout_marginTop="15dp">
+        android:layout_height="210dp"
+        android:background="@color/gradStop">
 
         <ViewFlipper
             android:layout_width="340dp"
@@ -22,10 +21,10 @@
         <ViewFlipper
             android:id="@+id/vFlipper2"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="175dp"
+            android:layout_marginTop="176dp"
             android:background="@color/dark"
             android:alpha="0.8">
 
@@ -37,7 +36,7 @@
                 android:textStyle="italic"
                 android:fontFamily="cursive"
                 android:textColor="@color/white"
-                android:textSize="32dp" />
+                android:textSize="22dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -47,14 +46,14 @@
                 android:textStyle="italic"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="32dp" />
+                android:textSize="22dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:text="Major Stationaries"
                 android:textAlignment="center"
-                android:textSize="32dp"
+                android:textSize="22dp"
                 android:textColor="@color/white"
                 android:textStyle="italic"
                 android:fontFamily="cursive"/>
@@ -65,7 +64,7 @@
                 android:text="Super Fast Delivery"
                 android:textColor="@color/white"
                 android:textAlignment="center"
-                android:textSize="32dp"
+                android:textSize="22dp"
                 android:fontFamily="cursive"/>
 
         </ViewFlipper>
@@ -78,7 +77,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/rll1"
         android:background="@color/colorAccent"
-        android:layout_marginTop="216dp">
+        android:layout_marginTop="300dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -88,25 +87,25 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/book10"/>
+                android:background="@drawable/book13"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
+                android:background="@color/gradStop"
                 android:alpha="0.4"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/dark"
-                android:alpha="0.8"/>
+                android:alpha="0.6"/>
             <Button
                 android:layout_marginLeft="25dp"
                 android:id="@+id/buut1"
                 android:layout_width="160dp"
                 android:layout_height="74dp"
-                android:layout_marginTop="63dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/btn_bg2"
                 android:text="Buy Books"
                 android:textAllCaps="false"
@@ -118,7 +117,7 @@
                 android:id="@+id/buut2"
                 android:layout_width="160dp"
                 android:layout_height="74dp"
-                android:layout_marginTop="63dp"
+                android:layout_marginTop="30dp"
                 android:text="Sell Books"
                 android:textAllCaps="false"
                 android:textSize="24dp"
@@ -130,15 +129,62 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rll2"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="82dp"
         android:layout_below="@+id/rll1"
-        android:layout_marginTop="59dp">
+        android:layout_marginTop="108dp">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/book11"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:layout_below="@+id/rll2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="                                                 Upcoming Schools"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            android:fontFamily="sans-serif-black"
+            android:background="@color/gradStop"
+            android:layout_marginTop="0dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycler_view2"
+            android:layout_marginTop="15dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:layout_below="@+id/rll1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="                                                      Live Schools"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginTop="3dp"
+            android:background="@color/gradStop" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycler_view1"
+            android:layout_marginTop="16dp" />
 
     </RelativeLayout>
 
