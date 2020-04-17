@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "66970909814-68ncv7uo88c6rbp62n5sureatmm3vjg8.apps.googleusercontent.com",
+          "client_id": "66970909814-mmhm9q3rkf614d2fhbgjp0plnrgru3jg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.codemail",
-            "certificate_hash": "1fac66d82c533409657fe472809a5cf5e98c48c9"
+            "certificate_hash": "0a2f939cfdb1cc0a4e29765e3c7b0c139b42cf0f"
           }
         },
         {

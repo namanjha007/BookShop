@@ -8,21 +8,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.codemail.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment {
+    DatabaseReference mRef1, mRef2, mRef3, mRef4;
+    TextView xx1, xx2, xx3, xx4;
 
     RecyclerView recyclerView, recyclerView2;
 
@@ -37,7 +42,15 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        xx1 = (TextView)root.findViewById(R.id.xx11);
+        xx2 = (TextView)root.findViewById(R.id.xx22);
+        xx3 = (TextView)root.findViewById(R.id.xx33);
+        xx4 = (TextView)root.findViewById(R.id.xx44);
 
+        mRef1 = FirebaseDatabase.getInstance().getReference().child("image1");
+        mRef2 = FirebaseDatabase.getInstance().getReference().child("image2");
+        mRef3 = FirebaseDatabase.getInstance().getReference().child("image3");
+        mRef4 = FirebaseDatabase.getInstance().getReference().child("image4");
 
         recyclerView = (RecyclerView)root.findViewById(R.id.recycler_view2);
 
@@ -90,23 +103,30 @@ public class HomeFragment extends Fragment {
         mainAdapter2 = new MainAdapter2(getContext(),mainModel2s);
         recyclerView2.setAdapter(mainAdapter2);
 
-
-
-
-        int images[] = {R.drawable.book3, R.drawable.book2, R.drawable.book1, R.drawable.book};
         vFlipper = (ViewFlipper)root.findViewById(R.id.vFlipper);
         vFlipper2 = (ViewFlipper)root.findViewById(R.id.vFlipper2);
-        for(int i=0;i<images.length;i++)
+
+//        String[] a = {"https://firebasestorage.googleapis.com/v0/b/codemail-88765.appspot.com/o/book3.png?alt=media&token=2b1a85dc-48a9-4857-bca5-c81b3f831934",
+//                "https://firebasestorage.googleapis.com/v0/b/codemail-88765.appspot.com/o/book2.jpg?alt=media&token=474eeea6-6472-4432-b044-370dcc0d68f4",
+//        "https://firebasestorage.googleapis.com/v0/b/codemail-88765.appspot.com/o/book1.jpg?alt=media&token=16a8bbc6-24f8-4919-a479-19d82c6d4557",
+//        "https://firebasestorage.googleapis.com/v0/b/codemail-88765.appspot.com/o/book.jpg?alt=media&token=7aab5efb-1d94-4629-b17d-7804907a3552"};
+
+        Integer[] a = {R.drawable.book3, R.drawable.book2, R.drawable.book1, R.drawable.book};
+
+        for(int i=0;i<4;i++)
         {
-            flipperImages(images[i]);
+            flipperImages(a[i]);
         }
+
 
         return root;
     }
+
+
     public void flipperImages(int image)
     {
         ImageView imageView = new ImageView(getContext());
-        imageView.setBackgroundResource(image);
+        Picasso.get().load(image).into(imageView);
 
         vFlipper.addView(imageView);
         vFlipper.setFlipInterval(4000);
@@ -119,5 +139,6 @@ public class HomeFragment extends Fragment {
 
         vFlipper2.setInAnimation(getContext(), android.R.anim.slide_in_left);
         vFlipper2.setOutAnimation(getContext(), android.R.anim.slide_out_right);
+        return;
     }
 }

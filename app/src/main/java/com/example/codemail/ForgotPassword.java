@@ -21,6 +21,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ForgotPassword extends AppCompatActivity {
 
@@ -28,6 +33,8 @@ public class ForgotPassword extends AppCompatActivity {
     Button userPass;
 
     FirebaseAuth firebaseAuth;
+    DatabaseReference mref;
+    TextView lol;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,7 @@ public class ForgotPassword extends AppCompatActivity {
 
         userEmail = findViewById(R.id.editTextCode1);
         userPass = findViewById(R.id.btnSigninn1);
+        lol = findViewById(R.id.tvfm);
 
 
         firebaseAuth = FirebaseAuth.getInstance();

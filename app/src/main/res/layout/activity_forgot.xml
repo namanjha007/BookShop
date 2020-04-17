@@ -98,4 +98,9 @@
         android:layout_marginTop="-214dp"
         android:visibility="gone"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/tvfm"/>
+
 </RelativeLayout>
