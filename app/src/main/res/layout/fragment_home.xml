@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <RelativeLayout
         android:id="@+id/rll1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:background="@color/gradStop">
+        android:background="@color/gradStop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ViewFlipper
+            android:id="@+id/vFlipper"
             android:layout_width="340dp"
             android:layout_height="200dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             android:layout_centerHorizontal="true"
-            android:id="@+id/vFlipper"/>
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
 
         <ViewFlipper
             android:id="@+id/vFlipper2"
@@ -25,47 +29,47 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"
             android:layout_marginTop="176dp"
-            android:background="@color/dark"
-            android:alpha="0.8">
+            android:alpha="0.8"
+            android:background="@color/dark">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:fontFamily="cursive"
                 android:text="Academic Books"
                 android:textAlignment="center"
-                android:textStyle="italic"
-                android:fontFamily="cursive"
                 android:textColor="@color/white"
-                android:textSize="22dp" />
+                android:textSize="22dp"
+                android:textStyle="italic" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:text="In association with Top Schools"
                 android:fontFamily="cursive"
-                android:textStyle="italic"
+                android:text="In association with Top Schools"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="22dp" />
+                android:textSize="22dp"
+                android:textStyle="italic" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:fontFamily="cursive"
                 android:text="Major Stationaries"
                 android:textAlignment="center"
-                android:textSize="22dp"
                 android:textColor="@color/white"
-                android:textStyle="italic"
-                android:fontFamily="cursive"/>
+                android:textSize="22dp"
+                android:textStyle="italic" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:fontFamily="cursive"
                 android:text="Super Fast Delivery"
-                android:textColor="@color/white"
                 android:textAlignment="center"
-                android:textSize="22dp"
-                android:fontFamily="cursive"/>
+                android:textColor="@color/white"
+                android:textSize="22dp" />
 
         </ViewFlipper>
 
@@ -73,140 +77,146 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="140dp"
         android:layout_below="@+id/rll1"
         android:background="@color/colorAccent"
-        android:layout_marginTop="300dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="#739BA9C8">
+            android:layout_height="140dp"
+            android:background="#739BA9C8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/book13"/>
+                android:background="@drawable/book13"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/gradStop"
-                android:alpha="0.4"/>
+                android:alpha="0.4"
+                android:background="@color/gradStop" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/dark"
-                android:alpha="0.6"/>
+                android:alpha="0.6"
+                android:background="@color/dark" />
+
             <Button
-                android:layout_marginLeft="25dp"
                 android:id="@+id/buut1"
                 android:layout_width="160dp"
                 android:layout_height="74dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/btn_bg2"
                 android:text="Buy Books"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="24dp"/>
+                android:textSize="24dp" />
 
             <Button
-                android:layout_marginLeft="210dp"
                 android:id="@+id/buut2"
                 android:layout_width="160dp"
                 android:layout_height="74dp"
+                android:layout_marginLeft="210dp"
                 android:layout_marginTop="30dp"
+                android:background="@drawable/btn_bg2"
                 android:text="Sell Books"
                 android:textAllCaps="false"
-                android:textSize="24dp"
                 android:textColor="@color/white"
-                android:background="@drawable/btn_bg2" />
+                android:textSize="24dp" />
 
         </RelativeLayout>
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rll2"
+        android:id="@+id/relativeLayout4"
         android:layout_width="match_parent"
         android:layout_height="82dp"
         android:layout_below="@+id/rll1"
-        android:layout_marginTop="108dp">
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rll1">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/book11"/>
+            android:src="@drawable/book11" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="108dp"
-        android:layout_below="@+id/rll2">
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/gradStop"
+            android:fontFamily="sans-serif-black"
             android:text="                                                 Upcoming Schools"
             android:textSize="12sp"
             android:textStyle="italic"
-            android:fontFamily="sans-serif-black"
-            android:background="@color/gradStop"
-            android:layout_marginTop="0dp"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="16dp"
+            android:id="@+id/recycler_view2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recycler_view2"
-            android:layout_marginTop="15dp"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="108dp"
-        android:layout_below="@+id/rll1">
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rll1">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@color/gradStop"
+            android:fontFamily="sans-serif-black"
             android:text="                                                      Live Schools"
             android:textSize="12sp"
-            android:textStyle="italic"
-            android:fontFamily="sans-serif-black"
-            android:layout_marginTop="3dp"
-            android:background="@color/gradStop" />
+            android:textStyle="italic" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recycler_view1"
             android:layout_marginTop="16dp" />
 
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/xx11"/>
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/xx22"/>
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/xx33"/>
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/xx44"/>
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

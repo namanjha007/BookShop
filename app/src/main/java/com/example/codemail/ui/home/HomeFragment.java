@@ -26,8 +26,7 @@ import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment {
-    DatabaseReference mRef1, mRef2, mRef3, mRef4;
-    TextView xx1, xx2, xx3, xx4;
+
 
     RecyclerView recyclerView, recyclerView2;
 
@@ -41,17 +40,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-        xx1 = (TextView)root.findViewById(R.id.xx11);
-        xx2 = (TextView)root.findViewById(R.id.xx22);
-        xx3 = (TextView)root.findViewById(R.id.xx33);
-        xx4 = (TextView)root.findViewById(R.id.xx44);
-
-        mRef1 = FirebaseDatabase.getInstance().getReference().child("image1");
-        mRef2 = FirebaseDatabase.getInstance().getReference().child("image2");
-        mRef3 = FirebaseDatabase.getInstance().getReference().child("image3");
-        mRef4 = FirebaseDatabase.getInstance().getReference().child("image4");
-
         recyclerView = (RecyclerView)root.findViewById(R.id.recycler_view2);
 
         Integer[] schoollogo = {R.drawable.loyola_logo, R.drawable.hilltop_logo, R.drawable.lfs_logo,
