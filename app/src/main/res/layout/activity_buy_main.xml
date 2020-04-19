@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/threebg">
+
+
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/classspin"
+            android:textAlignment="center"
+            android:layout_width="259dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="500dp"
+            android:layout_centerHorizontal="true"
+            android:autofillHints="Enter Class"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/custom_buttons"
+            android:forceDarkAllowed="false"
+            />
+
+
+    <TextView
+        android:id="@+id/boardtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="150dp"
+        android:text="Select Board"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/classtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="470dp"
+        android:text="Select Class"
+        android:textSize="20dp"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/schooltxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select School"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="300dp"
+        android:textSize="20dp"
+        android:textColor="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/boardspin"
+        android:textAlignment="center"
+        android:layout_width="259dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        android:autofillHints="Enter Board"
+        android:spinnerMode="dropdown"
+        android:background="@drawable/custom_buttons"
+        />
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/schoolspin"
+        android:textAlignment="center"
+        android:layout_width="259dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="330dp"
+        android:spinnerMode="dropdown"
+        android:autofillHints="Enter School"
+        android:background="@drawable/custom_buttons"
+        />
+
+    <Button
+        android:id="@+id/nextbutton"
+        android:layout_width="147dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="630dp"
+        android:background="@drawable/custom_buttons"
+        android:textSize="20sp"
+        android:textColor="@color/mr_cast_meta_black_scrim"
+
+        android:text="Next" />
+
+
+
+
+</RelativeLayout>

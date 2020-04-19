@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="board_list">
+    <item name="icse" type="string">ICSE</item>
+    <item name="cbse" type="string">CBSE</item>
+    <item name="jack" type="string">JACK</item>
+    </string-array>
+</resources>
