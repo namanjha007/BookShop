@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="school_list" >
+    <item name="ghs" type="string" >Gulmohur High School</item>
+    <item name="hts" type="string">Hill Top School</item>
+    <item name="cv" type="string">Chinmaya vidyalay</item>
+        <item name="ls" type="string">Loyala School</item>
+    </string-array>
+</resources>
