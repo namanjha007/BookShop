@@ -29,6 +29,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'com.google.firebase:firebase-storage:16.0.4'
+    implementation 'com.firebaseui:firebase-ui-firestore:4.1.0'
+    implementation 'com.firebaseui:firebase-ui-database:3.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
@@ -38,4 +40,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.2.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.firebase:firebase-client-android:2.5.2'
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha02'
+    implementation 'androidx.cardview:cardview:1.0.0-alpha1'
 }
