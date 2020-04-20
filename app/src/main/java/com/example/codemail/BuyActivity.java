@@ -120,14 +120,14 @@ public class BuyActivity extends AppCompatActivity  {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                arrayAdapter_school = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,xx[position]);
+                arrayAdapter_school = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,xx[position]);
                 school.setAdapter(arrayAdapter_school);
                 final int zz = position;
                 school.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                        arrayAdapter_class = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,yy[zz][position] );
+                        arrayAdapter_class = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,yy[zz][position] );
                         sclass.setAdapter(arrayAdapter_class);
 
                     }
