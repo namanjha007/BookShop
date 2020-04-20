@@ -59,7 +59,6 @@
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="180dp"
-        android:autofillHints="Enter Board"
         android:spinnerMode="dropdown"
         android:background="@drawable/custom_buttons"
         />
