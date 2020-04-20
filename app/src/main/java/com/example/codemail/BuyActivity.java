@@ -1,4 +1,4 @@
-package com.example.codemail.ui.buy;
+package com.example.codemail;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.codemail.R;
 
-public class buy_activity_main extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class BuyActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button bt;
     Spinner board, school, spinclass;
     TextView boardtxt, classtxt, schooltxt;

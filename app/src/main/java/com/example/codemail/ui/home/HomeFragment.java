@@ -1,9 +1,11 @@
 package com.example.codemail.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.codemail.BuyActivity;
 import com.example.codemail.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -33,6 +36,7 @@ import java.util.Locale;
 
 public class HomeFragment extends Fragment {
 
+    Button buut1, buut2;
     RecyclerView recyclerView, recyclerView1;
     DatabaseReference databaseReference, databaseReference1;
     FirebaseRecyclerOptions<LiveBooks> options;
@@ -44,6 +48,17 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        buut1 = (Button)root.findViewById(R.id.buut1);
+        buut2 = (Button)root.findViewById(R.id.buut2);
+
+        buut1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent int1 = new Intent(getContext(), BuyActivity.class);
+                startActivity(int1);
+            }
+        });
 
         Integer[] a = {R.drawable.book3, R.drawable.book2, R.drawable.book1, R.drawable.book};
 
