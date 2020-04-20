@@ -28,7 +28,9 @@ public class BuyActivity extends AppCompatActivity  {
 
     DatabaseReference db1;
     DatabaseReference vv [] = new DatabaseReference[100];
+    DatabaseReference ww [][] = new DatabaseReference[100][100];
     ArrayList<String>[] xx= new ArrayList[100];
+    ArrayList<String>[][] yy = new ArrayList[100][100];
     ArrayList<String> arrayList_board= new ArrayList<>();
     ArrayAdapter<String> arrayAdapter_board, arrayAdapter_school, arrayAdapter_class;
 
@@ -73,6 +75,27 @@ public class BuyActivity extends AppCompatActivity  {
                                 String x = areaSnapshot.getValue(String.class);
                                 xx[finalI].add(x);
                             }
+                            int l1 = xx[finalI].size();
+                            for(int j=0;j<l1;j++)
+                            {
+                                ww[finalI][j] = FirebaseDatabase.getInstance().getReference().child(xx[finalI].get(j));
+                                final int finalJ = j;
+                                ww[finalI][j].addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        for(DataSnapshot areaSnapshot : dataSnapshot.getChildren()){
+                                            String x = areaSnapshot.getValue(String.class);
+                                            yy[finalI][finalJ].add(x);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+                                yy[finalI][j] = new ArrayList<>();
+                            }
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -98,8 +121,22 @@ public class BuyActivity extends AppCompatActivity  {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 arrayAdapter_school = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,xx[position]);
-
                 school.setAdapter(arrayAdapter_school);
+                final int zz = position;
+                school.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                        arrayAdapter_class = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,yy[zz][position] );
+                        sclass.setAdapter(arrayAdapter_class);
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
 
             }
 
