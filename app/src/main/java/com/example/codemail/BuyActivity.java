@@ -1,5 +1,6 @@
 package com.example.codemail;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -13,67 +14,102 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codemail.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class BuyActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+import java.util.ArrayList;
+
+public class BuyActivity extends AppCompatActivity  {
     Button bt;
-    Spinner board, school, spinclass;
-    TextView boardtxt, classtxt, schooltxt;
+    Spinner board, school, sclass;
+
+    DatabaseReference db1;
+    DatabaseReference vv [] = new DatabaseReference[100];
+    ArrayList<String>[] xx= new ArrayList[100];
+    ArrayList<String> arrayList_board= new ArrayList<>();
+    ArrayAdapter<String> arrayAdapter_board, arrayAdapter_school, arrayAdapter_class;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_main);
+
+
         bt = findViewById(R.id.nextbutton);
         board = findViewById(R.id.boardspin);
         school = findViewById(R.id.schoolspin);
-        spinclass = findViewById(R.id.classspin);
-        boardtxt=findViewById(R.id.boardtxt);
-        classtxt=findViewById(R.id.classtxt);
-        final ArrayAdapter<CharSequence> adapterschool= ArrayAdapter.createFromResource(this,
-                R.array.school_list, android.R.layout.simple_spinner_item);
-        adapterschool.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        school.setAdapter(adapterschool);
-        school.setOnItemSelectedListener(this);
-        final ArrayAdapter<CharSequence> adapterboard = ArrayAdapter.createFromResource(this,
-                R.array.board_list, android.R.layout.simple_spinner_item);
-        adapterboard.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        board.setAdapter(adapterboard);
-        board.setOnItemSelectedListener(this);
-        final ArrayAdapter<CharSequence> adapterclass = ArrayAdapter.createFromResource(this,
-                R.array.class_list, android.R.layout.simple_spinner_item);
-        adapterclass.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinclass.setAdapter(adapterclass);
-        spinclass.setOnItemSelectedListener(this);
+        sclass = findViewById(R.id.classspin);
 
-    }
+        db1 = FirebaseDatabase.getInstance().getReference().child("BOARD");
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this, "hey", Toast.LENGTH_SHORT).show();
-        switch (parent.getId()) {
-            case R.id.boardspin:
 
-                String boardbyuser = parent.getItemAtPosition(position).toString();
-                Toast.makeText(this, "Board Selected", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.schoolspin:
-                schooltxt = findViewById(R.id.schooltxt);
-                String schoolbyuser = parent.getItemAtPosition(position).toString();
-                Toast.makeText(this, "School Selected", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.classspin:
-                String classp = parent.getItemAtPosition(position).toString();
 
-                Toast.makeText(this, "class Selected", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                Toast.makeText(this, "aye yo", Toast.LENGTH_LONG);
-                break;
-        }
-    }
 
-    @Override
-    public void onNothingSelected (AdapterView < ? > parent){
+
+        db1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                    String x = areaSnapshot.getValue(String.class);
+                    arrayList_board.add(x);
+
+                }
+
+                arrayAdapter_board = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,arrayList_board);
+                arrayAdapter_board.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                board.setAdapter(arrayAdapter_board);
+                int l = arrayList_board.size();
+                for (int i=0;i<l;i++)
+                {
+                    vv[i] = FirebaseDatabase.getInstance().getReference().child(arrayList_board.get(i));
+                    final int finalI = i;
+                    vv[i].addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                                String x = areaSnapshot.getValue(String.class);
+                                xx[finalI].add(x);
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                    xx[i] = new ArrayList<>();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        board.setAdapter(arrayAdapter_board);
+
+
+
+        board.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                arrayAdapter_school = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,xx[position]);
+
+                school.setAdapter(arrayAdapter_school);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
     }
 }
