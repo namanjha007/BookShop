@@ -39,6 +39,7 @@
 
         <activity android:name=".SettingActivity"/>
         <activity android:name=".BuyActivity"/>
+        <activity android:name=".BookList"/>
 
     </application>
 

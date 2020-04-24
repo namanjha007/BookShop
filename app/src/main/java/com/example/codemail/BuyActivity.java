@@ -3,8 +3,8 @@ package com.example.codemail;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,7 +13,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.codemail.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,132 +20,139 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class BuyActivity extends AppCompatActivity  {
+public class BuyActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button bt;
-    Spinner board, school, sclass;
-
-    DatabaseReference db1;
-    DatabaseReference vv [] = new DatabaseReference[100];
-    DatabaseReference ww [][] = new DatabaseReference[100][100];
-    ArrayList<String>[] xx= new ArrayList[100];
-    ArrayList<String>[][] yy = new ArrayList[100][100];
-    ArrayList<String> arrayList_board= new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter_board, arrayAdapter_school, arrayAdapter_class;
+    Spinner board, school, spinclass;
+    TextView boardtxt, classtxt, schooltxt;
+    DatabaseReference dr,drschool,drclass;
+    String boardbyuser,schoolbyuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_main);
-
-
         bt = findViewById(R.id.nextbutton);
         board = findViewById(R.id.boardspin);
         school = findViewById(R.id.schoolspin);
-        sclass = findViewById(R.id.classspin);
-
-        db1 = FirebaseDatabase.getInstance().getReference().child("BOARD");
-
-
-
-
-
-        db1.addListenerForSingleValueEvent(new ValueEventListener() {
+        spinclass = findViewById(R.id.classspin);
+        boardtxt = findViewById(R.id.boardtxt);
+        classtxt = findViewById(R.id.classtxt);
+        school.setOnItemSelectedListener(this);
+        board.setOnItemSelectedListener(this);
+        spinclass.setOnItemSelectedListener(this);
+        dr = FirebaseDatabase.getInstance().getReference().child("spinners").child("board");
+        String key = dr.getKey();
+        Toast.makeText(getApplicationContext(), key, Toast.LENGTH_LONG).show();
+        Log.e("Count " ,""+key);
+        dr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                    String x = areaSnapshot.getValue(String.class);
-                    arrayList_board.add(x);
-
+                final List<String> titleList = new ArrayList<String>();
+                Toast.makeText(getApplicationContext(),"enter on data change",Toast.LENGTH_SHORT).show();
+                Log.e("Count " ,""+dataSnapshot.getChildrenCount());
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    Toast.makeText(getApplicationContext(),"inside for loop",Toast.LENGTH_LONG).show();
+                    String titlename = dataSnapshot1.getKey();
+                    titleList.add(titlename);
+                    Toast.makeText(getApplicationContext(),titlename,Toast.LENGTH_LONG).show();
                 }
-
-                arrayAdapter_board = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,arrayList_board);
-                arrayAdapter_board.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                board.setAdapter(arrayAdapter_board);
-                int l = arrayList_board.size();
-                for (int i=0;i<l;i++)
-                {
-                    vv[i] = FirebaseDatabase.getInstance().getReference().child(arrayList_board.get(i));
-                    final int finalI = i;
-                    vv[i].addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                                String x = areaSnapshot.getValue(String.class);
-                                xx[finalI].add(x);
-                            }
-                            int l1 = xx[finalI].size();
-                            for(int j=0;j<l1;j++)
-                            {
-                                ww[finalI][j] = FirebaseDatabase.getInstance().getReference().child(xx[finalI].get(j));
-                                final int finalJ = j;
-                                ww[finalI][j].addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        for(DataSnapshot areaSnapshot : dataSnapshot.getChildren()){
-                                            String x = areaSnapshot.getValue(String.class);
-                                            yy[finalI][finalJ].add(x);
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                    }
-                                });
-                                yy[finalI][j] = new ArrayList<>();
-                            }
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-                    xx[i] = new ArrayList<>();
-                }
-
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, titleList);
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                board.setAdapter(arrayAdapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        board.setAdapter(arrayAdapter_board);
-
-
-
-        board.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                arrayAdapter_school = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,xx[position]);
-                school.setAdapter(arrayAdapter_school);
-                final int zz = position;
-                school.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                        arrayAdapter_class = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,yy[zz][position] );
-                        sclass.setAdapter(arrayAdapter_class);
-
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+                Toast.makeText(BuyActivity.this,databaseError.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
 
 
+    }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+        switch (parent.getId()) {
+            case R.id.boardspin:
+                boardbyuser = parent.getItemAtPosition(position).toString();
+                Toast.makeText(this, "Board Selected", Toast.LENGTH_SHORT).show();
+                boardselected();
+                break;
+            case R.id.schoolspin:
+                schooltxt = findViewById(R.id.schooltxt);
+                schoolbyuser = parent.getItemAtPosition(position).toString();
+                Toast.makeText(this, "School Selected", Toast.LENGTH_SHORT).show();
+                schoolselected();
+                break;
+            case R.id.classspin:
+                String classp = parent.getItemAtPosition(position).toString();
+                Toast.makeText(this, "class Selected", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                Toast.makeText(this, "aye yo", Toast.LENGTH_LONG);
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected (AdapterView < ? > parent){
+
+    }
+    public void boardselected(){
+        drschool= FirebaseDatabase.getInstance().getReference().child("spinners").child("board").child(boardbyuser);
+        String keyschool = dr.getKey();
+        Toast.makeText(getApplicationContext(), keyschool, Toast.LENGTH_LONG).show();
+        Log.e("Count of school " ,""+keyschool);
+        drschool.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final List<String> titleList = new ArrayList<String>();
+                Toast.makeText(getApplicationContext(),"enter on data change",Toast.LENGTH_SHORT).show();
+                Log.e("Count of school " ,""+dataSnapshot.getChildrenCount());
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    Toast.makeText(getApplicationContext(),"inside for loop",Toast.LENGTH_LONG).show();
+                    String titlename = dataSnapshot1.getKey();
+                    titleList.add(titlename);
+                    Toast.makeText(getApplicationContext(),titlename,Toast.LENGTH_LONG).show();
+                }
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, titleList);
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                school.setAdapter(arrayAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(BuyActivity.this,databaseError.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    public void schoolselected(){
+        drclass= FirebaseDatabase.getInstance().getReference().child("spinners").child("board").child(boardbyuser).child(schoolbyuser);
+        String keyschool = drclass.getKey();
+        Toast.makeText(getApplicationContext(), keyschool, Toast.LENGTH_LONG).show();
+        drclass.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final List<String> titleList = new ArrayList<String>();
+                Toast.makeText(getApplicationContext(),"enter on data change",Toast.LENGTH_SHORT).show();
+                Log.e("Count of class" ,""+dataSnapshot.getChildrenCount());
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    Toast.makeText(getApplicationContext(),"inside for loop",Toast.LENGTH_LONG).show();
+                    String titlename = dataSnapshot1.getKey();
+                    titleList.add(titlename);
+                    Toast.makeText(getApplicationContext(),titlename,Toast.LENGTH_LONG).show();
+                }
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, titleList);
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinclass.setAdapter(arrayAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(BuyActivity.this,databaseError.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

@@ -2,8 +2,13 @@ package com.example.codemail;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,24 +17,33 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class CreateAccount extends AppCompatActivity {
-
+    public String number, nam;
     private Spinner spinner;
     private EditText editText;
 
     EditText name, emailId, password;
     Button btnSignup, tvSignIn;
-    FirebaseAuth mFirebaseAuth;
+    FirebaseAuth mFirebaseAuth, mAuth;
+
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createaccount);
 
@@ -50,7 +64,8 @@ public class CreateAccount extends AppCompatActivity {
                 final String email = emailId.getText().toString();
                 final String pwd = password.getText().toString();
                 String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
-                String number = editText.getText().toString().trim();
+                number = editText.getText().toString().trim();
+                nam = name.getText().toString();
 
                 if(number.isEmpty()||number.length()<10)
                 {
@@ -77,6 +92,8 @@ public class CreateAccount extends AppCompatActivity {
                     inte.putExtra("phonenumber",phonenumber);
                     inte.putExtra("pwd",pwd);
                     inte.putExtra("email",email);
+                    inte.putExtra("name",nam);
+                    Log.e("1","name="+nam);
                     startActivity(inte);
                 }
                 else{
@@ -84,6 +101,7 @@ public class CreateAccount extends AppCompatActivity {
 
                 }
             }
+
         });
 
         tvSignIn.setOnClickListener(new View.OnClickListener() {
@@ -93,5 +111,26 @@ public class CreateAccount extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
     }
+
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential){
+        mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    // you may be using a signIn with phone number like this, now here you can save the phone number in your database
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("phone");
+
+                    ref.child(number).setValue(number);
+
+                }
+                else if(task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                    Toast.makeText(CreateAccount.this, "OTP is incorrect", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     RelativeLayout rellay1, rellay2;
@@ -40,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
     Button btnSignin,signup;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    public String phonenumber,name;
+    int xnx=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +54,8 @@ public class LoginActivity extends AppCompatActivity {
         rellay1 = (RelativeLayout) findViewById(R.id.rellay1);
         rellay2 = (RelativeLayout) findViewById(R.id.rellay2);
         tvgo = (TextView) findViewById(R.id.tvgone);
-
+        phonenumber = getIntent().getStringExtra("phonenumber");
+        name = getIntent().getStringExtra("name");
         handler.postDelayed(runnable, 2000);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -64,6 +70,9 @@ public class LoginActivity extends AppCompatActivity {
                 if( mFirebaseUser != null ){
                     Toast.makeText(LoginActivity.this,"You are logged in",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    i.putExtra("phonenumber",phonenumber);
+                    i.putExtra("name",name);
+                    Log.e("3","name="+name);
                     startActivity(i);
                 }
                 else{
@@ -104,7 +113,11 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this,"Login Error, Please Login Again",Toast.LENGTH_SHORT).show();
                             }
                             else{
+                                String x = getIntent().getStringExtra("name");
                                 Intent intToHome = new Intent(LoginActivity.this,MainActivity.class);
+                                intToHome.putExtra("phonenumber",phonenumber);
+                                intToHome.putExtra("name",name);
+                                Log.e("5","name="+name);
                                 startActivity(intToHome);
                             }
                         }
@@ -126,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onStart() {
