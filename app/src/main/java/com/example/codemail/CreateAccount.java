@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -47,53 +48,44 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createaccount);
 
-        spinner = findViewById(R.id.spinnerCountries);
-        spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
-
-        editText= findViewById(R.id.edt6);
-
         mFirebaseAuth = FirebaseAuth.getInstance();
         name = findViewById(R.id.edt1);
         emailId = findViewById(R.id.edt2);
-        password = findViewById(R.id.edt3);
         tvSignIn = findViewById(R.id.tvSignin);
         btnSignup = findViewById(R.id.signupbt);
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String email = emailId.getText().toString();
-                final String pwd = password.getText().toString();
-                String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
-                number = editText.getText().toString().trim();
-                nam = name.getText().toString();
-
-                if(number.isEmpty()||number.length()<10)
-                {
-                    editText.setError("Valid Number is Required");
-                    editText.requestFocus();
-                    return;
-                }
-
-                final String phonenumber = "+" + code + number;
+                final String phonenumber= getIntent().getStringExtra("numberUser");
+                final String nam = name.getText().toString();
 
                 if(email.isEmpty()){
                     emailId.setError("Please enter email id");
                     emailId.requestFocus();
                 }
-                else  if(pwd.isEmpty()){
-                    password.setError("Please enter your password");
-                    password.requestFocus();
+                else  if(nam.isEmpty()){
+                    name.setError("Please enter your password");
+                    name.requestFocus();
                 }
-                else  if(email.isEmpty() && pwd.isEmpty()){
+                else  if(email.isEmpty() && nam.isEmpty()){
                     Toast.makeText(CreateAccount.this,"Fields Are Empty!",Toast.LENGTH_SHORT).show();
                 }
-                else  if(!(email.isEmpty() && pwd.isEmpty())){
-                    Intent inte=new Intent(CreateAccount.this, OtpRegister.class);
-                    inte.putExtra("phonenumber",phonenumber);
-                    inte.putExtra("pwd",pwd);
-                    inte.putExtra("email",email);
-                    inte.putExtra("name",nam);
-                    Log.e("1","name="+nam);
+                else  if(!(email.isEmpty() && nam.isEmpty())){
+                    DatabaseReference dbb = FirebaseDatabase.getInstance().getReference().child("Phone");
+                    dbb.child(phonenumber).setValue(phonenumber);
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String User = user.getUid();
+                    final DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("User");
+                    DatabaseReference childreff = reff.child(User);
+                    DatabaseReference chichildreff = childreff.child("Personal");
+                    DatabaseReference chichichildreff = chichildreff.child("Name");
+                    chichichildreff.setValue(nam);
+                    DatabaseReference chichichildreff1 = chichildreff.child("Phone");
+                    chichichildreff1.setValue(phonenumber);
+                    DatabaseReference chichichildreff2 = chichildreff.child("Email");
+                    chichichildreff2.setValue(email);
+                    Intent inte=new Intent(CreateAccount.this, MainActivity.class);
                     startActivity(inte);
                 }
                 else{

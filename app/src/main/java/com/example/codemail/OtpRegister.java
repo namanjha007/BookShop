@@ -109,9 +109,6 @@ public class OtpRegister extends AppCompatActivity {
                                     else {
                                         intent = new Intent(OtpRegister.this, LoginActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        intent.putExtra("phonenumber",phonenumber);
-                                        intent.putExtra("name",name);
-                                        Log.e("2","name="+name);
                                         startActivity(intent);
                                     }
                                 }

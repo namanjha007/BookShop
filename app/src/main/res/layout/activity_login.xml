@@ -49,8 +49,8 @@
            />
 
        <RelativeLayout
-           android:id="@+id/rellay1"
            android:visibility="gone"
+           android:id="@+id/rellay1"
            android:layout_below="@+id/img_logo"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content">
@@ -61,9 +61,9 @@
                android:layout_height="wrap_content"
                android:layout_marginTop="20dp"
                android:fontFamily="sans-serif-medium"
-               android:text="Login"
+               android:text="Login/Create New Account"
                android:textColor="@color/white"
-               android:textSize="30sp"/>
+               android:textSize="23sp"/>
 
            <LinearLayout
                android:id="@+id/linlay1"
@@ -78,17 +78,9 @@
                    android:layout_height="wrap_content"
                    android:orientation="vertical">
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="EMAIL"
-                       android:textAllCaps="true"
-                       android:fontFamily="sans-serif-light"
-                       android:textSize="15sp"
-                       android:textColor="@color/white" />
 
                    <EditText
-                       android:id="@+id/edt4"
+                       android:id="@+id/editTextPhone"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:textSize="15sp"
@@ -98,46 +90,17 @@
                        android:paddingLeft="15dp"
                        android:paddingRight="15dp"
                        android:background="@drawable/et_bg"
-                       android:hint="Email"
+                       android:hint="Enter Mobile Number"
                        android:textColorHint="@color/white"/>
 
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical"
-                   android:layout_marginTop="20dp">
-
-                   <TextView
-
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="Password"
-                       android:textAllCaps="true"
-                       android:fontFamily="sans-serif-light"
-                       android:textSize="15sp"
-                       android:textColor="@color/white"/>
-
-                   <EditText
-                       android:id="@+id/edt5"
-                       android:inputType="textPassword"
-                       android:layout_width="match_parent"
-                       android:layout_height="40dp"
-                       android:textSize="15sp"
-                       android:layout_marginTop="5dp"
-                       android:textColor="@color/white"
-                       android:fontFamily="sans-serif-light"
-                       android:paddingLeft="15dp"
-                       android:paddingRight="15dp"
-                       android:background="@drawable/et_bg"
-                       android:hint="Password"
-                       android:textColorHint="@color/white"/>
+                   <Spinner
+                       android:id="@+id/spinnerCountries"
+                       android:outlineAmbientShadowColor="@color/white"
+                       android:outlineSpotShadowColor="@color/white"
+                       android:layout_width="150dp"
+                       android:layout_height="wrap_content"/>
 
                </LinearLayout>
-
-
-
 
            </LinearLayout>
 
@@ -146,7 +109,7 @@
                android:layout_width="wrap_content"
                android:layout_height="40dp"
                android:layout_below="@+id/linlay1"
-               android:text="Login"
+               android:text="GET OTP"
                android:textAllCaps="false"
                android:background="@drawable/btn_bg"
                android:textColor="@color/white"
@@ -154,8 +117,59 @@
                android:paddingLeft="70dp"
                android:paddingRight="70dp"
                android:layout_centerHorizontal="true"
-               android:textSize="16sp"
-               android:layout_marginTop="50dp"/>
+               android:textSize="18sp"
+               android:layout_marginTop="30dp"/>
+
+           <LinearLayout
+               android:id="@+id/linlay3"
+               android:layout_marginTop="30dp"
+               android:layout_below="@+id/btnSignin"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+
+           <LinearLayout
+               android:id="@+id/linlay4"
+               android:visibility="gone"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+
+
+               <EditText
+                   android:id="@+id/editTextCode"
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   android:textSize="15sp"
+                   android:layout_marginTop="5dp"
+                   android:textColor="@color/white"
+                   android:fontFamily="sans-serif-light"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:background="@drawable/et_bg"
+                   android:hint="Ente OTP"
+                   android:textColorHint="@color/white"/>
+
+           </LinearLayout>
+
+           </LinearLayout>
+
+           <Button
+               android:visibility="gone"
+               android:id="@+id/btnSigni"
+               android:layout_width="wrap_content"
+               android:layout_height="40dp"
+               android:layout_below="@+id/linlay3"
+               android:text="VERIFY OTP"
+               android:textAllCaps="false"
+               android:background="@drawable/btn_bg"
+               android:textColor="@color/white"
+               android:fontFamily="sans-serif-medium"
+               android:paddingLeft="70dp"
+               android:paddingRight="70dp"
+               android:layout_centerHorizontal="true"
+               android:textSize="18sp"
+               android:layout_marginTop="30dp"/>
 
        </RelativeLayout>
 
@@ -172,37 +186,5 @@
         android:layout_marginTop="530dp"
         android:fontFamily="cursive"
         android:textColor="@color/white"/>
-
-    <RelativeLayout
-        android:id="@+id/rellay2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:text="Sign Up"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif" />
-
-        <Button
-            android:id="@+id/pwcbt"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:text="Forgot Password?"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif"/>
-
-    </RelativeLayout>
 
 </RelativeLayout>

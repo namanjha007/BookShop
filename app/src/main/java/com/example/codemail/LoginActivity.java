@@ -2,28 +2,57 @@ package com.example.codemail;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.codemail.R;
+import com.firebase.client.FirebaseError;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskExecutors;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity {
+    FirebaseAuth mFirebaseAuth;
+
+    public String phonenumber,UID="";
+    private Spinner spinner;
+    public Intent intent;
+    private String verificationid, name;
+    private FirebaseAuth mAuth, mAuth2;
+    private ProgressBar progressBar;
+    private EditText editText,phone;
+    LinearLayout linlay;
     RelativeLayout rellay1, rellay2;
     Button pwcbtn;
     TextView tvgo;
@@ -34,124 +63,177 @@ public class LoginActivity extends AppCompatActivity {
         {
 
             rellay1.setVisibility(View.VISIBLE);
-            rellay2.setVisibility(View.VISIBLE);
             tvgo.setVisibility(View.INVISIBLE);
         }
     };
 
-    EditText emailId, password;
-    Button btnSignin,signup;
-    FirebaseAuth mFirebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
-    public String phonenumber,name;
-    int xnx=0;
+    Handler handler2=new Handler();
+    Runnable runnable2=new Runnable(){
+        @Override
+        public void run()
+        {
+
+            linlay.setVisibility(View.VISIBLE);
+            pwcbtn.setVisibility(View.VISIBLE);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        pwcbtn = (Button) findViewById(R.id.pwcbt);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        } else {
+            // User is signed out
+        }
+
+        spinner = findViewById(R.id.spinnerCountries);
+        spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
+
         rellay1 = (RelativeLayout) findViewById(R.id.rellay1);
-        rellay2 = (RelativeLayout) findViewById(R.id.rellay2);
         tvgo = (TextView) findViewById(R.id.tvgone);
-        phonenumber = getIntent().getStringExtra("phonenumber");
-        name = getIntent().getStringExtra("name");
+        linlay = (LinearLayout)findViewById(R.id.linlay4);
+        pwcbtn = (Button)findViewById(R.id.btnSigni);
+
         handler.postDelayed(runnable, 2000);
 
+        mAuth = FirebaseAuth.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
-        emailId = findViewById(R.id.edt4);
-        password = findViewById(R.id.edt5);
-        btnSignin = findViewById(R.id.btnSignin);
-        signup = findViewById(R.id.signup);
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-                if( mFirebaseUser != null ){
-                    Toast.makeText(LoginActivity.this,"You are logged in",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                    i.putExtra("phonenumber",phonenumber);
-                    i.putExtra("name",name);
-                    Log.e("3","name="+name);
-                    startActivity(i);
-                }
-                else{
-                    Toast.makeText(LoginActivity.this,"Please Login",Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
 
-        pwcbtn.setOnClickListener(new View.OnClickListener() {
+        editText = findViewById(R.id.editTextCode);
+
+        phone = findViewById(R.id.editTextPhone);
+
+        findViewById(R.id.btnSignin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent inty = new Intent(LoginActivity.this,ForgotPassword.class);
-                startActivity(inty);
+                String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
+                phonenumber = "+"+code+phone.getText().toString();
+                if(phonenumber.isEmpty()||phonenumber.length()<10)
+                {
+                    phone.setError("Valid Number is Required");
+                    phone.requestFocus();
+                    return;
+                }
+                else {
+                    handler2.postDelayed(runnable2, 500);
+                    sendVerificationCode(phonenumber);
+                }
+//                final DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("User");
+//                DatabaseReference childreff = reff.child("User_"+name+"_"+phonenumber);
+//                DatabaseReference chichildreff = childreff.child("Personal");
+//                DatabaseReference chichichildreff = chichildreff.child("Name");
+//                chichichildreff.setValue(name);
+//                DatabaseReference chichichildreff1 = chichildreff.child("Phone");
+//                chichichildreff1.setValue(phonenumber);
+
             }
         });
 
-        btnSignin.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnSigni).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = emailId.getText().toString();
-                String pwd = password.getText().toString();
-                if(email.isEmpty()){
-                    emailId.setError("Please enter email id");
-                    emailId.requestFocus();
+                String code = editText.getText().toString().trim();
+                if ((code.isEmpty() || code.length() < 6)) {
+
+                    editText.setError("Enter code...");
+                    editText.requestFocus();
+                    return;
+                } else {
+                    verifyCode(code);
                 }
-                else  if(pwd.isEmpty()){
-                    password.setError("Please enter your password");
-                    password.requestFocus();
-                }
-                else  if(email.isEmpty() && pwd.isEmpty()){
-                    Toast.makeText(LoginActivity.this,"Fields Are Empty!",Toast.LENGTH_SHORT).show();
-                }
-                else  if(!(email.isEmpty() && pwd.isEmpty())){
-                    mFirebaseAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(!task.isSuccessful()){
-                                Toast.makeText(LoginActivity.this,"Login Error, Please Login Again",Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                String x = getIntent().getStringExtra("name");
-                                Intent intToHome = new Intent(LoginActivity.this,MainActivity.class);
-                                intToHome.putExtra("phonenumber",phonenumber);
-                                intToHome.putExtra("name",name);
-                                Log.e("5","name="+name);
-                                startActivity(intToHome);
-                            }
+
+            }
+        });
+    }
+
+
+    private void verifyCode(String code){
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationid, code);
+        signInWithCredential(credential);
+    }
+
+    private void signInWithCredential(PhoneAuthCredential credential) {
+        final int[] flag = {0};
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Phone");
+
+                            reference.child(phonenumber).addListenerForSingleValueEvent(new ValueEventListener() {
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.getValue() != null) {
+                                        //username found
+                                        Intent intent2 = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent2);
+
+                                    }else{
+                                        // username not found
+                                        Intent intent = new Intent(LoginActivity.this, CreateAccount.class);
+                                        intent.putExtra("numberUser",phonenumber);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                    }
+
+                                }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+
                         }
-                    });
-                }
-                else{
-                    Toast.makeText(LoginActivity.this,"Error Occurred!",Toast.LENGTH_SHORT).show();
 
-                }
+                               else {
+                            Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
 
+    private void sendVerificationCode(String number){
+
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                number,
+                60,
+                TimeUnit.SECONDS,
+                TaskExecutors.MAIN_THREAD,
+                mCallBack
+        );
+    }
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
+            mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        @Override
+        public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            super.onCodeSent(s, forceResendingToken);
+            verificationid = s;
+        }
+
+        @Override
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+            String code = phoneAuthCredential.getSmsCode();
+            if (code != null){
+                verifyCode(code);
             }
-        });
+        }
 
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intSignUp = new Intent(LoginActivity.this, CreateAccount.class);
-                startActivity(intSignUp);
-            }
-        });
-    }
+        @Override
+        public void onVerificationFailed(FirebaseException e) {
+            Toast.makeText(LoginActivity.this, e.getMessage(),Toast.LENGTH_LONG).show();
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
-    }
-    public void onBackPressed()
-    {
-        moveTaskToBack(true);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(2);
-    }
-
+        }
+    };
 }
-

@@ -61,15 +61,45 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         nametext = (TextView) headerView.findViewById(R.id.nametext);
-        final String phonenumber = getIntent().getStringExtra("phonenumber");
-        final String name = getIntent().getStringExtra("name");
-        Log.e("4","name="+name);
-        nametext.setText(name);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String User = user.getUid();
+
+        DatabaseReference dbbd = FirebaseDatabase.getInstance().getReference().child("User").child(User).child("Personal").child("Name");
+        dbbd.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String x = dataSnapshot.getValue().toString();
+                int l = x.length();
+                if(l>10)
+                {
+                    l=10;
+                }
+                x=x.substring(0,l);
+                char ch;
+                for(int j=0;j<l;j++)
+                {
+                    ch = x.charAt(j);
+                    if(ch==' ')
+                    {
+                        x=x.substring(0,j);
+                        break;
+                    }
+                }
+                nametext.setText("Hi "+x);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
