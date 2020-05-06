@@ -48,10 +48,10 @@
         tools:layout="@layout/fragment_yourorders" />
 
     <fragment
-        android:id="@+id/nav_payment"
-        android:name="com.example.codemail.ui.paymentmethods.PaymentmethodsFragment"
+        android:id="@+id/nav_myad"
+        android:name="com.example.codemail.ui.myad.MyadFragment"
         android:label="@string/menu_bookshop"
-        tools:layout="@layout/fragment_paymentmethods" />
+        tools:layout="@layout/fragment_myad" />
 
     <fragment
         android:id="@+id/nav_mywishlist"

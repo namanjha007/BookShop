@@ -40,6 +40,12 @@
         <activity android:name=".SettingActivity"/>
         <activity android:name=".BuyActivity"/>
         <activity android:name=".BookList"/>
+        <activity android:name=".sellbooks.SellActivity"
+            android:theme="@style/Theme.AppCompat"/>
+        <activity android:name=".sellbooks.UploadimageActivity"
+            android:theme="@style/Theme.AppCompat"/>
+        <activity android:name=".sellbooks.PreviewAd"
+            android:theme="@style/Theme.AppCompat"/>
 
     </application>
 

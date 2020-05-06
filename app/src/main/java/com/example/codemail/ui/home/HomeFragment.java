@@ -7,31 +7,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.codemail.BuyActivity;
 import com.example.codemail.R;
+import com.example.codemail.sellbooks.SellActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.Locale;
 
 
 public class HomeFragment extends Fragment {
@@ -51,6 +43,14 @@ public class HomeFragment extends Fragment {
 
         buut1 = (Button)root.findViewById(R.id.buut1);
         buut2 = (Button)root.findViewById(R.id.buut2);
+
+        buut2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent int2 = new Intent(getContext(), SellActivity.class);
+                startActivity(int2);
+            }
+        });
 
         buut1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment {
             @Override
             protected void onBindViewHolder(CategoryViewHolder categoryViewHolder, int i, LiveBooks liveBooks) {
 
-                Picasso.get().load(liveBooks.geturl()).into(categoryViewHolder.i1, new Callback() {
+                Picasso.get().load(liveBooks.geturl()).fit().centerCrop().into(categoryViewHolder.i1, new Callback() {
                     @Override
                     public void onSuccess() {
 

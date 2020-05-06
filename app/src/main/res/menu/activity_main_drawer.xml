@@ -37,9 +37,9 @@
                 android:icon="@drawable/yourorder"
                 android:title= "@string/menu_YourOrders" />
             <item
-                android:id="@+id/nav_payment"
-                android:icon="@drawable/paymentmethod"
-                android:title="@string/menu_payment"/>
+                android:id="@+id/nav_myad"
+                android:icon="@drawable/myad"
+                android:title="My Ad"/>
             <item
                 android:id="@+id/nav_mywishlist"
                 android:icon="@drawable/mywishlist"
