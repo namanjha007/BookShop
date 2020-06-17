@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
@@ -26,18 +27,19 @@ public class HomeFragment extends Fragment {
 
         buut1 = (Button)root.findViewById(R.id.buut1);
         buut2 = (Button)root.findViewById(R.id.buut2);
+        final String but_message = "Books will be available before the new academic year";
 
         buut2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(getContext(),but_message,Toast.LENGTH_LONG).show();
             }
         });
 
         buut1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(getContext(),but_message,Toast.LENGTH_LONG).show();
             }
         });
 
