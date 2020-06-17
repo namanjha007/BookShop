@@ -1,223 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <RelativeLayout
-        android:id="@+id/rll1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:background="@color/gradStop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ViewFlipper
-            android:id="@+id/vFlipper"
-            android:layout_width="340dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp" />
-
-        <ViewFlipper
-            android:id="@+id/vFlipper2"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="176dp"
-            android:alpha="0.8"
-            android:background="@color/dark">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:fontFamily="cursive"
-                android:text="Academic Books"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="22dp"
-                android:textStyle="italic" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:fontFamily="cursive"
-                android:text="In association with Top Schools"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="22dp"
-                android:textStyle="italic" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:fontFamily="cursive"
-                android:text="Major Stationaries"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="22dp"
-                android:textStyle="italic" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:fontFamily="cursive"
-                android:text="Super Fast Delivery"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="22dp" />
-
-        </ViewFlipper>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_below="@+id/rll1"
-        android:background="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
+            android:layout_marginBottom="5dp"
+            android:layout_weight="0.35"
+            android:id="@+id/rll1"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:background="#739BA9C8"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:layout_height="match_parent"
+            android:background="@color/gradStop">
 
-            <RelativeLayout
+            <ViewFlipper
+                android:id="@+id/vFlipper"
+                android:layout_width="340dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+
+            <ViewFlipper
+                android:id="@+id/vFlipper2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/book13"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:alpha="0.8"
+                android:background="@color/dark"
+                android:layout_alignParentBottom="true">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alpha="0.4"
-                android:background="@color/gradStop" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:fontFamily="cursive"
+                    android:text="Academic Books"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="22dp"
+                    android:textStyle="italic" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alpha="0.6"
-                android:background="@color/dark" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="cursive"
+                    android:text="In association with Top Schools"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="22dp"
+                    android:textStyle="italic" />
 
-            <Button
-                android:id="@+id/buut1"
-                android:layout_width="160dp"
-                android:layout_height="74dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/btn_bg2"
-                android:text="Buy Books"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="24dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="cursive"
+                    android:text="Major Stationaries"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="22dp"
+                    android:textStyle="italic" />
 
-            <Button
-                android:id="@+id/buut2"
-                android:layout_width="160dp"
-                android:layout_height="74dp"
-                android:layout_marginLeft="210dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/btn_bg2"
-                android:text="Sell Books"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="24dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="cursive"
+                    android:text="Super Fast Delivery"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="22dp" />
+
+            </ViewFlipper>
+
 
         </RelativeLayout>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="82dp"
-        android:layout_below="@+id/rll1"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rll1">
-
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/book11" />
+            android:layout_weight="0.3"
+            android:orientation="vertical">
 
-    </RelativeLayout>
+            <Button
+                android:layout_marginTop="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.55"
+                android:text="Stationary"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/et_bg1"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_weight="0.4"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="108dp"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4">
+                <ImageButton
+                    android:src="@drawable/pencil"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/btn_bg5"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
+                    android:scaleType="fitStart"/>
 
-        <TextView
-            android:id="@+id/textView"
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/btn_bg5"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
+                    android:src="@drawable/pen"
+                    android:scaleType="fitEnd"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_weight="0.4"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp">
+
+                <ImageButton
+                    android:src="@drawable/notebook"
+                    android:scaleType="fitStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/btn_bg5"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginRight="23dp"
+                    android:layout_weight="0.5"
+                    android:text="View All"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="22dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:background="@drawable/btn_bg4"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="0.35"
+            android:id="@+id/relativeLayout3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/gradStop"
-            android:fontFamily="sans-serif-black"
-            android:text="                                                 Upcoming Schools"
-            android:textSize="12sp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="16dp"
-            android:id="@+id/recycler_view2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="108dp"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rll1">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:background="@color/gradStop"
-            android:fontFamily="sans-serif-black"
-            android:text="                                                      Live Schools"
-            android:textSize="12sp"
-            android:textStyle="italic" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
-
-    </RelativeLayout>
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorAccent">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:src="@drawable/book11"
+                android:layout_marginBottom="5dp"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#739BA9C8">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/book13" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.4"
+                    android:background="@color/gradStop" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.6"
+                    android:background="@color/dark" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true">
+
+                    <Button
+                        android:id="@+id/buut1"
+                        android:layout_width="160dp"
+                        android:layout_height="74dp"
+                        android:background="@drawable/btn_bg2"
+                        android:text="Buy Books"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="24dp"
+                        android:layout_margin="10dp"/>
+
+                    <Button
+                        android:id="@+id/buut2"
+                        android:layout_width="160dp"
+                        android:layout_height="74dp"
+                        android:background="@drawable/btn_bg2"
+                        android:text="Sell Books"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="24dp"
+                        android:layout_margin="10dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
