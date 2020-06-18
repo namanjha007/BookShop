@@ -93,8 +93,6 @@ public class LoginActivity extends AppCompatActivity {
             // User is signed out
         }
 
-        spinner = findViewById(R.id.spinnerCountries);
-        spinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
 
         rellay1 = (RelativeLayout) findViewById(R.id.rellay1);
         tvgo = (TextView) findViewById(R.id.tvgone);
@@ -113,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.btnSignin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
+                String code = "+91";
                 phonenumber = "+"+code+phone.getText().toString();
                 if(phonenumber.isEmpty()||phonenumber.length()<10)
                 {

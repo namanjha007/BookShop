@@ -13,8 +13,6 @@
         android:theme="@style/AppTheme"
         >
 
-
-
         <activity android:name=".LoginActivity">
 
             <intent-filter>
@@ -35,9 +33,10 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|adjustResize"/>
 
-        <activity android:name=".ForgotPassword"/>
-
         <activity android:name=".SettingActivity"/>
+
+        <activity android:name=".StationaryActivity"
+            android:theme="@style/Theme.AppCompat"/>
 
     </application>
 
