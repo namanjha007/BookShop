@@ -10,6 +10,6 @@
     <stroke android:color="@color/white"
         android:width="1dp"/>
 
-    <solid android:color="@color/gradStop"/>
+    <solid android:color="#1A69CA"/>
 
 </shape>

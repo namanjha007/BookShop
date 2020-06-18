@@ -1,7 +1,13 @@
 package com.example.codemail.ui.home;
 
+import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.fonts.FontFamily;
+import android.graphics.fonts.FontStyle;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +15,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +46,7 @@ public class HomeFragment extends Fragment {
     ImageButton img_btn1, img_btn2, img_btn3, img_btn4, img_btn5;
     ProgressDialog progressDialog;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -85,7 +94,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        Integer[] a = {R.drawable.book3, R.drawable.book2, R.drawable.book1, R.drawable.book};
+        Integer[] a = {0, 1, 2, 3};
 
         vFlipper = (ViewFlipper)root.findViewById(R.id.vFlipper);
         vFlipper2 = (ViewFlipper)root.findViewById(R.id.vFlipper2);
@@ -97,12 +106,92 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    public void flipperImages(int image)
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void flipperImages(final int image)
     {
-        ImageView imageView = new ImageView(getContext());
-        Picasso.get().load(image).into(imageView);
+        final ImageView imageView = new ImageView(getContext());
+        final TextView textView = new TextView(getContext());
+        textView.setTextSize(18);
+        textView.setTextColor(Color.parseColor("#FFFFFF"));
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        textView.setTextAppearance(FontStyle.FONT_SLANT_ITALIC);
+        if(image==0) {
+            databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Home_Flipper");
+            databaseReference1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    String link1 = dataSnapshot.child("Image1").getValue(String.class);
+                    Picasso.get().load(link1).fit().into(imageView);
+                    String title = dataSnapshot.child("Title1").getValue(String.class);
+                    textView.setText(title);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+        else if(image==1){
+            databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Home_Flipper");
+            databaseReference1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    String link1 = dataSnapshot.child("Image2").getValue(String.class);
+                    Picasso.get().load(link1).fit().into(imageView);
+                    String title = dataSnapshot.child("Title2").getValue(String.class);
+                    textView.setText(title);
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+        else if(image == 2)
+        {
+            databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Home_Flipper");
+            databaseReference1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    String link1 = dataSnapshot.child("Image3").getValue(String.class);
+                    Picasso.get().load(link1).fit().into(imageView);
+                    String title = dataSnapshot.child("Title3").getValue(String.class);
+                    textView.setText(title);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+        else if(image==3){
+            databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Home_Flipper");
+            databaseReference1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    String link1 = dataSnapshot.child("Image4").getValue(String.class);
+                    Picasso.get().load(link1).fit().into(imageView);
+                    String title = dataSnapshot.child("Title4").getValue(String.class);
+                    textView.setText(title);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
 
         vFlipper.addView(imageView);
+        vFlipper2.addView(textView);
         vFlipper.setFlipInterval(4000);
         vFlipper2.setFlipInterval(3999);
         vFlipper.setAutoStart(true);
