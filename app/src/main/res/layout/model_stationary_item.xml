@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:elevation="50dp"
+    android:orientation="vertical"
+    android:layout_marginBottom="6dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/btn_bg6">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.19">
+
+            <ImageView
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/item_image"
+                android:background="@drawable/defaulty"
+                android:scaleType="centerCrop"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/item_name"
+            android:gravity="center"
+            android:text="My Name"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="15dp"
+            android:maxLength="30"
+            android:textColor="@color/darky"
+            android:layout_weight="0.95" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="0.95">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/cutprice"
+                android:gravity="right"
+                android:text="My Name"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp"
+                android:maxLength="30"
+                android:textColor="@color/darky"
+                android:layout_weight="0.5"
+                android:paddingRight="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/sellprice"
+                android:gravity="left"
+                android:text="My Name"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp"
+                android:maxLength="20"
+                android:textColor="@color/darky"
+                android:layout_weight="0.5"
+                android:paddingLeft="5dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
