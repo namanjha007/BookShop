@@ -23,7 +23,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/defaulty"/>
+                android:background="@drawable/defaulty3"/>
 
             <ViewFlipper
                 android:id="@+id/vFlipper2"
@@ -164,9 +164,10 @@
 
 
             <ImageView
+                android:id="@+id/magicbook"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:src="@drawable/book11"
+                android:background="@drawable/defaulty2"
                 android:layout_marginBottom="5dp"/>
 
 

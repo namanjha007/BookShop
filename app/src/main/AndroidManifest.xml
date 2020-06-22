@@ -38,6 +38,9 @@
         <activity android:name=".StationaryActivity"
             android:theme="@style/Theme.AppCompat"/>
 
+        <activity android:name=".ItemActivity"
+            android:theme="@style/Theme.AppCompat"/>
+
     </application>
 
 </manifest>

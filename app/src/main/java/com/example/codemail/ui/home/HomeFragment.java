@@ -41,6 +41,7 @@ import com.squareup.picasso.Picasso;
 public class HomeFragment extends Fragment {
 
     DatabaseReference databaseReference1;
+    ImageView magicBook;
     Button buut1, buut2, buut3, buut4;
     ViewFlipper vFlipper, vFlipper2;
     ImageButton img_btn1, img_btn2, img_btn3, img_btn4, img_btn5;
@@ -54,6 +55,7 @@ public class HomeFragment extends Fragment {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
+        magicBook = (ImageView)root.findViewById(R.id.magicbook);
         buut1 = (Button)root.findViewById(R.id.buut1);
         buut2 = (Button)root.findViewById(R.id.buut2);
         buut3 = (Button)root.findViewById(R.id.buut3);
@@ -235,6 +237,9 @@ public class HomeFragment extends Fragment {
                 String link5 = dataSnapshot.child("Image5").getValue(String.class);
                 Picasso.get().load(link5).fit().centerCrop().into(img_btn5);
                 progressDialog.dismiss();
+
+                String link6 = dataSnapshot.child("Image6").getValue(String.class);
+                Picasso.get().load(link6).fit().centerCrop().into(magicBook);
             }
 
             @Override

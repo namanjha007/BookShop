@@ -12,18 +12,6 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_buy"
-        android:name="com.example.codemail.ui.buy.BuyFragment"
-        android:label="@string/menu_bookshop"
-        tools:layout="@layout/fragment_buy" />
-
-    <fragment
-        android:id="@+id/nav_sell"
-        android:name="com.example.codemail.ui.sell.SellFragment"
-        android:label="@string/menu_bookshop"
-        tools:layout="@layout/fragment_sell" />
-
-    <fragment
         android:id="@+id/nav_help"
         android:name="com.example.codemail.ui.help.HelpFragment"
         android:label="@string/menu_bookshop"
@@ -46,12 +34,6 @@
         android:name="com.example.codemail.ui.yourorders.YourordersFragment"
         android:label="@string/menu_bookshop"
         tools:layout="@layout/fragment_yourorders" />
-
-    <fragment
-        android:id="@+id/nav_myad"
-        android:name="com.example.codemail.ui.myad.MyadFragment"
-        android:label="@string/menu_bookshop"
-        tools:layout="@layout/fragment_myad" />
 
     <fragment
         android:id="@+id/nav_mywishlist"

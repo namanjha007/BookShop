@@ -1,8 +1,10 @@
 package com.example.codemail;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +35,7 @@ public class StationaryActivity extends AppCompatActivity {
     FirebaseRecyclerOptions<CategoryModel> options;
     FirebaseRecyclerAdapter<CategoryModel, CategoryViewHolder> adapter;
     ProgressDialog progressDialog;
-
+    public View view;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,15 +70,24 @@ public class StationaryActivity extends AppCompatActivity {
                     }
                 });
                 categoryViewHolder.t1.setText(liveBooks.getimgname());
+                Log.e("1", "onBindViewHolder: "+i );
 
+                final String post = getRef(i).getKey();
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(StationaryActivity.this, ItemActivity.class);
+                        intent.putExtra("keyCat", post);
+                        startActivity(intent);
+                    }
+                });
             }
 
             @NonNull
             @Override
             public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.model_stationary_category,parent,false);
-
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.model_stationary_category,parent,false);
                 return new CategoryViewHolder(view);
             }
         };
@@ -85,6 +96,7 @@ public class StationaryActivity extends AppCompatActivity {
         recyclerView1.setLayoutManager(gridLayoutManager);
         adapter.startListening();
         recyclerView1.setAdapter(adapter);
+
 
     }
 

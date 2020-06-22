@@ -10,13 +10,13 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/btn_bg6">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.15"
-            android:background="@color/gradStop">
+            android:layout_weight="0.15">
 
             <ImageView
                 android:layout_marginLeft="3dp"
@@ -30,7 +30,6 @@
         </RelativeLayout>
 
         <TextView
-            android:background="@color/gradStop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/category_name"
@@ -40,7 +39,7 @@
             android:layout_centerHorizontal="true"
             android:textSize="17dp"
             android:maxLength="20"
-            android:textColor="@color/white"
+            android:textColor="@color/darky"
             android:layout_weight="0.99"/>
 
     </LinearLayout>
