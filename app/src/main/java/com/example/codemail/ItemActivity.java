@@ -83,7 +83,7 @@ public class ItemActivity extends AppCompatActivity {
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                                                progressDialog.dismiss();
                     }
                 });
             }
