@@ -49,7 +49,7 @@ public class ItemActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(ItemActivity.this);
         progressDialog.setMessage("Loading Items...");
-        progressDialoggg.show();
+        progressDialog.show();
 
         recyclerView1 = (RecyclerView)findViewById(R.id.recyView_item);
         String keyCat = getIntent().getStringExtra("keyCat");
